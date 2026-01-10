@@ -9,8 +9,8 @@ from django.db import models
 from django.db.models import F
 from django.utils import timezone
 
-from fundex.users.models import Profile
-from fundex.goals.models import Goal
+from users.models import Profile
+from goals.models import Goal
 
 
 class Transaction(models.Model):

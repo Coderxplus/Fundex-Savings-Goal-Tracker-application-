@@ -1,7 +1,8 @@
 """Goal models for tracking user savings objectives."""
 
 import uuid
-from fundex.users.models import Profile
+from users.models import Profile
+
 from django.db import models
 
 

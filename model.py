@@ -1,6 +1,6 @@
 from google import genai
 
-client = genai.Client(api_key="AIzaSyA0hJO0tIhTOrEnpa1suqkOHnxy2CdVakU")
+client = genai.Client()
 
 for model in client.models.list():
     print(model.name)

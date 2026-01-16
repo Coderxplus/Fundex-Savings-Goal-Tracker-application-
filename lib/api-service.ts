@@ -21,7 +21,9 @@ export const apiService = {
 
     const data = await res.json()
     if (data.access) {
-      localStorage.setItem("authToken", data.access) // save JWT
+      localStorage.setItem("access", data.access)
+      localStorage.setItem("refresh", data.refresh)
+      // save JWT
     }
 
     return data
@@ -48,7 +50,7 @@ export const apiService = {
   // -------------------------
   getDashboard: async () => {
     
-    const token = localStorage.getItem("authToken")
+    const token = localStorage.getItem("access")
     const res = await fetch(`${API_BASE_URL}/me/`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -61,7 +63,7 @@ export const apiService = {
   // Goals
   // -------------------------
   getGoals: async () => {
-    const token = localStorage.getItem("authToken")
+    const token = localStorage.getItem("access")
     const res = await fetch(`${API_BASE_URL}/goals/`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -78,7 +80,7 @@ export const apiService = {
     category_id?: number
     status?: string
   }) => {
-    const token = localStorage.getItem("authToken")
+    const token = localStorage.getItem("access")
     const res = await fetch(`${API_BASE_URL}/goals/`, {
       method: "POST",
       headers: {
@@ -102,7 +104,7 @@ export const apiService = {
     goal_id?: string
     user_id?: string
   }) => {
-    const token = localStorage.getItem("authToken")
+    const token = localStorage.getItem("access")
     const res = await fetch(`${API_BASE_URL}/transactions/`, {
       method: "POST",
       headers: {
@@ -117,7 +119,7 @@ export const apiService = {
   },
 
   getTransactions: async () => {
-    const token = localStorage.getItem("authToken")
+    const token = localStorage.getItem("access")
     const res = await fetch(`${API_BASE_URL}/transactions/`, {
       headers: { Authorization: `Bearer ${token}` },
     })

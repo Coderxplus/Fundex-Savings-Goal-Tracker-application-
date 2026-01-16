@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework_simplejwt',
+    'rest_framework',
+    'corsheaders',
     'common',
     'goals',
     'transactions',
@@ -64,6 +66,7 @@ REST_FRAMEWORK = {
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -92,6 +95,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fundex.wsgi.application'
 
+CORS_ALLOW_ALL_HEADERS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",   
+    "http://127.0.0.1:5173",
+    "https://z9wwrdpr-3000.uks1.devtunnels.ms",
+    "http://localhost:3000"
+]
+
+CORS_ALLOW_CREDENTIALS = True
+APPEND_SLASH=True
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "authorization",
+    "content-type",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases

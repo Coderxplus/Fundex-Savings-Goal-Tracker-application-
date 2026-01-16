@@ -11,14 +11,14 @@ export function SidebarNav() {
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/goals", label: "Goals", icon: Target },
     { href: "/transactions", label: "Transactions", icon: CreditCard },
-    { href: "/ai-assistant", label: "Funex AI Assistant", icon: Zap },
+    { href: "/ai-assistant", label: "Fundex AI Assistant", icon: Zap },
   ]
 
   return (
     <aside className="w-64 bg-white border-r border-slate-200 flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-slate-200">
-        <h1 className="text-2xl font-bold text-blue-600">Funex</h1>
+        <h1 className="text-2xl font-bold text-blue-600">Fundex</h1>
       </div>
 
       {/* Navigation */}
@@ -54,7 +54,7 @@ export function SidebarNav() {
 
       {/* Footer */}
       <div className="p-4 border-t border-slate-200 text-xs text-slate-500 text-center">
-        © 2025 Funex. All rights reserved.
+        © 2026 Fundex. All rights reserved.
       </div>
     </aside>
   )

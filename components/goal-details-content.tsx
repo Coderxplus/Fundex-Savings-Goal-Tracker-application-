@@ -33,7 +33,7 @@ export function GoalDetailsContent({ goalId }: GoalDetailsContentProps) {
   useEffect(() => {
     const fetchGoal = async () => {
       try {
-        const response = await apiService.getGoal(goalId)
+        const response = await apiService.getGoals()
         setGoal(response)
       } catch (error) {
         console.error("Failed to fetch goal details:", error)

@@ -19,7 +19,7 @@ export function AIAssistantContent() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! I'm Funex AI. How can I assist you today?",
+      text: "Hello! I'm Fundex AI. How can I assist you today?",
       sender: "ai",
       timestamp: new Date(),
     },

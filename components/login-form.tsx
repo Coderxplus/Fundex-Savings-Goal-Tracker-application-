@@ -8,21 +8,38 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
+import { apiService } from "@/lib/api-service"
 
 export function LoginForm() {
   const router = useRouter()
-  const [email, setEmail] = useState("")
+  const [username, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError("")
     setIsLoading(true)
-    // Simulate login
-    setTimeout(() => {
-      router.push("/dashboard")
-    }, 500)
+
+    try {
+      const response = await apiService.login(username, password)
+
+      if (response.success || response.token) {
+        // Store token if provided
+        if (response.token) {
+          localStorage.setItem("authToken", response.token)
+        }
+        router.push("/dashboard")
+      } else {
+        setError(response.message || "Login failed")
+      }
+    } catch (err) {
+      setError("Failed to connect to server. Make sure backend is running")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -34,6 +51,9 @@ export function LoginForm() {
         <p className="text-sm text-slate-600">Enter your credentials to access your financial dashboard.</p>
       </div>
 
+      {/* Error Message */}
+      {error && <div className="p-3 bg-red-100 text-red-700 rounded-lg text-sm">{error}</div>}
+
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
@@ -41,10 +61,10 @@ export function LoginForm() {
             Email
           </label>
           <Input
-            id="email"
-            type="email"
+            id="username"
+            type="username"
             placeholder="name@example.com"
-            value={email}
+            value={username}
             onChange={(e) => setEmail(e.target.value)}
             required
             className="w-full"
